@@ -1,0 +1,130 @@
+[gd_scene load_steps=16 format=3]
+
+[ext_resource type="StandardMaterial3D" path="res://materials/prop.tres" id="1_prop"]
+[ext_resource type="Script" path="res://steps/step_02_the_camera_moves/hiding_spot.gd" id="2_spot"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_inside"]
+albedo_color = Color(0.05, 0.05, 0.06, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_back"]
+material = SubResource("StandardMaterial3D_inside")
+size = Vector3(1.4, 2.1, 0.04)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sideleft"]
+material = ExtResource("1_prop")
+size = Vector3(0.04, 2.1, 0.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sideright"]
+material = ExtResource("1_prop")
+size = Vector3(0.04, 2.1, 0.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_top"]
+material = ExtResource("1_prop")
+size = Vector3(1.4, 0.04, 0.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_base"]
+material = SubResource("StandardMaterial3D_inside")
+size = Vector3(1.32, 0.04, 0.86)
+
+[sub_resource type="BoxMesh" id="BoxMesh_plinth"]
+material = ExtResource("1_prop")
+size = Vector3(1.44, 0.1, 0.03)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cornice"]
+material = ExtResource("1_prop")
+size = Vector3(1.48, 0.1, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_door"]
+material = ExtResource("1_prop")
+size = Vector3(0.645, 1.89, 0.03)
+
+[sub_resource type="BoxMesh" id="BoxMesh_panel"]
+material = ExtResource("1_prop")
+size = Vector3(0.46, 1.6, 0.012)
+
+[sub_resource type="BoxMesh" id="BoxMesh_handle"]
+material = ExtResource("1_prop")
+size = Vector3(0.03, 0.18, 0.03)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_closet"]
+size = Vector3(1.4, 2.1, 0.9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_reach"]
+size = Vector3(2, 2, 1.4)
+
+
+[node name="Closet" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, -0.45)
+shape = SubResource("BoxShape3D_closet")
+
+[node name="Back" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, -0.02)
+mesh = SubResource("BoxMesh_back")
+
+[node name="SideLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.68, 1.05, -0.45)
+mesh = SubResource("BoxMesh_sideleft")
+
+[node name="SideRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.68, 1.05, -0.45)
+mesh = SubResource("BoxMesh_sideright")
+
+[node name="Top" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08, -0.45)
+mesh = SubResource("BoxMesh_top")
+
+[node name="Base" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, -0.45)
+mesh = SubResource("BoxMesh_base")
+
+[node name="Plinth" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -0.905)
+mesh = SubResource("BoxMesh_plinth")
+
+[node name="Cornice" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05, -0.925)
+mesh = SubResource("BoxMesh_cornice")
+
+[node name="HingeLeft" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.655, 1.055, -0.885)
+
+[node name="DoorLeft" type="MeshInstance3D" parent="HingeLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3225, 0, 0)
+mesh = SubResource("BoxMesh_door")
+
+[node name="PanelLeft" type="MeshInstance3D" parent="HingeLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3225, 0, -0.021)
+mesh = SubResource("BoxMesh_panel")
+
+[node name="HandleLeft" type="MeshInstance3D" parent="HingeLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.585, -0.05, -0.036)
+mesh = SubResource("BoxMesh_handle")
+
+[node name="HingeRight" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.655, 1.055, -0.885)
+
+[node name="DoorRight" type="MeshInstance3D" parent="HingeRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3225, 0, 0)
+mesh = SubResource("BoxMesh_door")
+
+[node name="PanelRight" type="MeshInstance3D" parent="HingeRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3225, 0, -0.021)
+mesh = SubResource("BoxMesh_panel")
+
+[node name="HandleRight" type="MeshInstance3D" parent="HingeRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.585, -0.05, -0.036)
+mesh = SubResource("BoxMesh_handle")
+
+[node name="Reach" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_spot")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Reach"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.6)
+shape = SubResource("BoxShape3D_reach")
+
+[node name="View" type="Marker3D" parent="Reach"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, -0.8)

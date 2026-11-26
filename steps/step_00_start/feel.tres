@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://steps/step_00_start/feel.gd" id="1_feel"]
+
+[resource]
+script = ExtResource("1_feel")
+stride = 1.7
+first_step = 0.5
+bob_height = 0.08
+bob_smoothing = 8.0
+kick_degrees = 5.0
+kick_out_time = 0.12
+kick_back_time = 0.45

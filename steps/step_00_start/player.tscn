@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://steps/step_00_start/player.gd" id="1_player"]
+[ext_resource type="PackedScene" path="res://steps/step_00_start/character.tscn" id="2_character"]
+[ext_resource type="AudioStream" path="res://sounds/key_pickup.ogg" id="3_pickup"]
+[ext_resource type="Script" path="res://steps/step_00_start/footsteps.gd" id="4_steps_script"]
+[ext_resource type="AudioStreamRandomizer" path="res://steps/step_00_start/footsteps.tres" id="5_steps"]
+[ext_resource type="Script" path="res://steps/step_00_start/camera_feel.gd" id="6_camera"]
+[ext_resource type="Script" path="res://steps/step_00_start/health.gd" id="7_health"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_body"]
+radius = 0.4
+height = 1.8
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_body")
+
+[node name="Body" parent="." instance=ExtResource("2_character")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" node_paths=PackedStringArray("footsteps")]
+cull_mask = 1048571
+current = true
+script = ExtResource("6_camera")
+footsteps = NodePath("../../Footsteps")
+
+[node name="KeyPickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pickup")
+volume_db = -4.0
+bus = &"SFX"
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+stream = ExtResource("5_steps")
+volume_db = -2.0
+unit_size = 2.0
+max_distance = 20.0
+max_polyphony = 2
+bus = &"SFX"
+script = ExtResource("4_steps_script")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("7_health")

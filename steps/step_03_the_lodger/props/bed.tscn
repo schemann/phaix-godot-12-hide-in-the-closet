@@ -1,0 +1,128 @@
+[gd_scene load_steps=17 format=3]
+
+[ext_resource type="StandardMaterial3D" path="res://materials/prop.tres" id="1_prop"]
+[ext_resource type="Script" path="res://steps/step_03_the_lodger/hiding_spot.gd" id="2_spot"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mattress"]
+albedo_color = Color(0.84, 0.86, 0.92, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_blanket"]
+albedo_color = Color(0.38, 0.52, 0.58, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fold"]
+albedo_color = Color(0.5, 0.64, 0.7, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pillow"]
+albedo_color = Color(0.98, 0.98, 0.98, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_frame"]
+material = ExtResource("1_prop")
+size = Vector3(1.56, 0.1, 0.86)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mattress"]
+material = SubResource("StandardMaterial3D_mattress")
+size = Vector3(1.5, 0.18, 0.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_blanket"]
+material = SubResource("StandardMaterial3D_blanket")
+size = Vector3(1, 0.05, 0.86)
+
+[sub_resource type="BoxMesh" id="BoxMesh_drape"]
+material = SubResource("StandardMaterial3D_blanket")
+size = Vector3(1, 0.16, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_foldmesh"]
+material = SubResource("StandardMaterial3D_fold")
+size = Vector3(0.1, 0.07, 0.86)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pillow"]
+material = SubResource("StandardMaterial3D_pillow")
+size = Vector3(0.36, 0.1, 0.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_headboard"]
+material = ExtResource("1_prop")
+size = Vector3(0.06, 0.95, 0.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_footboard"]
+material = ExtResource("1_prop")
+size = Vector3(0.05, 0.22, 0.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_leg"]
+material = ExtResource("1_prop")
+size = Vector3(0.08, 0.4, 0.08)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bed"]
+size = Vector3(1.6, 0.7, 0.9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_reach"]
+size = Vector3(2.1, 2, 1.2)
+
+[node name="Bed" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, -0.45)
+shape = SubResource("BoxShape3D_bed")
+
+[node name="Frame" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -0.45)
+mesh = SubResource("BoxMesh_frame")
+
+[node name="Mattress" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59, -0.45)
+mesh = SubResource("BoxMesh_mattress")
+
+[node name="Blanket" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.705, -0.45)
+mesh = SubResource("BoxMesh_blanket")
+
+[node name="BlanketFront" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.62, -0.88)
+mesh = SubResource("BoxMesh_drape")
+
+[node name="BlanketBack" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.62, -0.02)
+mesh = SubResource("BoxMesh_drape")
+
+[node name="BlanketFold" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.74, -0.45)
+mesh = SubResource("BoxMesh_foldmesh")
+
+[node name="Pillow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.73, -0.45)
+mesh = SubResource("BoxMesh_pillow")
+
+[node name="Headboard" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.77, 0.575, -0.45)
+mesh = SubResource("BoxMesh_headboard")
+
+[node name="Footboard" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.775, 0.61, -0.45)
+mesh = SubResource("BoxMesh_footboard")
+
+[node name="LegBackLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.72, 0.2, -0.06)
+mesh = SubResource("BoxMesh_leg")
+
+[node name="LegBackRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.72, 0.2, -0.06)
+mesh = SubResource("BoxMesh_leg")
+
+[node name="LegFrontLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.72, 0.2, -0.84)
+mesh = SubResource("BoxMesh_leg")
+
+[node name="LegFrontRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.72, 0.2, -0.84)
+mesh = SubResource("BoxMesh_leg")
+
+[node name="Reach" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_spot")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Reach"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.5)
+shape = SubResource("BoxShape3D_reach")
+
+[node name="View" type="Marker3D" parent="Reach"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -0.45)

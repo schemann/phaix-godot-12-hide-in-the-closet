@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://steps/step_04_the_peek/prop_set.gd" id="1_set"]
+
+[ext_resource type="PackedScene" path="res://steps/step_04_the_peek/props/pillar.tscn" id="2_pillar"]
+
+[ext_resource type="PackedScene" path="res://steps/step_04_the_peek/props/crate.tscn" id="3_crate"]
+
+[ext_resource type="PackedScene" path="res://steps/step_04_the_peek/props/shelf.tscn" id="4_shelf"]
+
+[ext_resource type="PackedScene" path="res://steps/step_04_the_peek/props/live_wire.tscn" id="9_live_wire"]
+
+[ext_resource type="PackedScene" path="res://steps/step_04_the_peek/props/closet.tscn" id="11_closet"]
+
+[ext_resource type="PackedScene" path="res://steps/step_04_the_peek/props/bed.tscn" id="12_bed"]
+
+[resource]
+script = ExtResource("1_set")
+scenes = Array[PackedScene]([ExtResource("2_pillar"), ExtResource("3_crate"), ExtResource("4_shelf"), ExtResource("9_live_wire"), ExtResource("11_closet"), ExtResource("12_bed")])
+weights = Array[float]([5.0, 2.0, 1.0, 1.5, 2.0, 1.5])
+empty_weight = 2.0
